@@ -21,7 +21,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
     $boClient = new BusinessObjectClient($bddClient);
 
     $bddConseiller = new AccesBDDConseillerBancaire;
-
     $boConseiller = new BusinessObjectConseillerBancaire($bddConseiller);
 
     // Gestion de l'affichage de la liste des clients et des détails d'un client
@@ -46,13 +45,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
     } elseif (isset($_GET['idConseiller'])) {
         // Si un ID est fourni, afficher les détails du conseiller
         $idConseiller = $_GET['idConseiller'];
-        $conseillerDetails = $boConseiller->recupererDetailConseillerBancaire($idConseiller);
+        $conseillerDetails = $boConseiller->recupererDetailConseillerBancaireAvecComptes($idConseiller);
 
         if ($conseillerDetails) {
             // Afficher tous les détails du conseiller
             echo '<h2>Détails du Conseiller Bancaire</h2>';
-            foreach ($conseillerDetails as $key => $value) {
-                echo '<p>' . $key . ': ' . $value . '</p>';
+            echo '<p>Nom du conseiller: ' . $conseillerDetails[0]['nom_conseiller'] . ' ' . $conseillerDetails[0]['prenom_conseiller'] . '</p>';
+
+            echo '<h3>Clients gérés:</h3>';
+            foreach ($conseillerDetails as $row) {
+                echo '<p>Client: <a href="?idClient=' . $row['id_client'] . '">' . $row['nom'] . ' ' . $row['prenom'] . '</a></p>';
+                echo '<p>Compte: ' . $row['type_compte'] . ', Solde: ' . $row['solde'] . '</p>';
+
             }
 
             // Ajouter un lien pour revenir à la liste des conseillers
@@ -73,7 +77,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
         }
         echo '</ul>';
 
-        echo '<h2>Liste des Conseillers Bancaires</h2>';
+        echo '<h2>Liste des comptes clients gérés par un conseiller</h2>';
         echo '<ul>';
         foreach ($listeConseillers as $conseiller) {
             echo '<li><a href="?idConseiller=' . $conseiller->id_conseiller . '">' . $conseiller->nom_conseiller . ' ' . $conseiller->prenom_conseiller . '</a></li>';

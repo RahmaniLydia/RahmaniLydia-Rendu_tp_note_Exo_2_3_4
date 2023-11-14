@@ -41,13 +41,18 @@ class AccesBDDConseillerBancaire {
         return $conseillersBancaires;
     }
 
-    public function recupererDetailConseillerBancaire($idConseillerBancaire) {
-        $query = "SELECT * FROM conseiller_bancaire WHERE id_conseiller = :id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $idConseillerBancaire);
-        $stmt->execute();
+    public function recupererDetailConseillerBancaireAvecComptes($idConseillerBancaire) {
+      $query = "SELECT cb.id_conseiller, cb.id_agence, cb.nom_conseiller, cb.prenom_conseiller, c.id_client, c.nom, c.prenom, compte.id_compte, compte.type_compte, compte.solde
+                FROM conseiller_bancaire cb
+                LEFT JOIN client c ON cb.id_conseiller = c.id_conseiller
+                LEFT JOIN compte_bancaire compte ON c.id_client = compte.id_client
+                WHERE cb.id_conseiller = :id";
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':id', $idConseillerBancaire);
+      $stmt->execute();
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
 ?>

@@ -12,8 +12,8 @@ class BusinessObjectConseillerBancaire {
         return $this->bdd->recupererListeConseillerBancaire();
     }
 
-    public function recupererDetailConseillerBancaire($idConseiller) {
-        return $this->bdd->recupererDetailConseillerBancaire($idConseiller);
+    public function recupererDetailConseillerBancaireAvecComptes($idConseiller) {
+        return $this->bdd->recupererDetailConseillerBancaireAvecComptes($idConseiller);
     }
 }
  ?>
