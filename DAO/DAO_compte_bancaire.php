@@ -1,14 +1,14 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/DO/DO_compte_bancaire.php');
-
+// Classe pour gérer l'accès à la base de données des comptes bancaire
 class AccesBDDCompteBancaire {
     public $conn;
 
-    public function __construct() {
+   function __construct() {
         $this->connectionBdd();
     }
 
-    private function connectionBdd() {
+   function connectionBdd() {
         $serveur = "localhost";
         $baseDeDonnees = "info_clients";
         $utilisateur = "root";
@@ -21,13 +21,13 @@ class AccesBDDCompteBancaire {
             die("Erreur : " . $e->getMessage());
         }
     }
-
-    public function recupererListeComptesBancaires() {
+// Fonction pour recupérer la liste des comptes bancaires depuis la base de donnéé
+   function recupererListeComptesBancaires() {
         $res = $this->conn->query("SELECT id_compte, id_client, type_compte, solde FROM compte_bancaire");
 
         $i = 0;
         $comptesBancaires = [];
-
+  // Parcours des résultats et création dobjets CompteBancaire
         foreach ($res as $row) {
             $compteBancaire = new CompteBancaire;
             $compteBancaire->id_compte = $row['id_compte'];
@@ -41,6 +41,6 @@ class AccesBDDCompteBancaire {
         return $comptesBancaires;
     }
 
-  
+
 }
 ?>

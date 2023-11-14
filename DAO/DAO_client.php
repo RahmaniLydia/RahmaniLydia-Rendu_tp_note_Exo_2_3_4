@@ -1,14 +1,14 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/DO/DO_client.php');
-
+// Classe pour gérer l'accès à la base de données des clients
 class AccesBDDClient {
     public $conn;
 
-    public function __construct() {
+     function __construct() {
         $this->connectionBdd();
     }
-
-    private function connectionBdd() {
+// Fonction pour établir une connexion à la base de données
+     function connectionBdd() {
         $serveur = "localhost";
         $baseDeDonnees = "info_clients";
         $utilisateur = "root";
@@ -21,13 +21,14 @@ class AccesBDDClient {
             die("Erreur : " . $e->getMessage());
         }
     }
-
-    public function recupererListeClient() {
+// Fonction pour récupérer la liste des clients depuis la base de données
+   function recupererListeClient() {
+      //  requête our récupérer les données des clients
         $res = $this->conn->query("SELECT id_client, id_conseiller, nom, prenom, adresse, date_de_naissance, numéro_tel, Situation_familiale, Situation_familiale_nbr_enfants FROM client");
 
         $i = 0;
         $clients = [];
-
+ // Parcours des résultats et création d'objets Client
         foreach ($res as $row) {
             $client = new Client;
             $client->id_client = $row['id_client'];
@@ -42,16 +43,18 @@ class AccesBDDClient {
             $clients[$i] = $client;
             $i++;
         }
+         // Retourne la liste des clients
 
         return $clients;
     }
 
-    public function recupererDetailClient($idClient) {
+   function recupererDetailClient($idClient) {
+      // Requête pour récupérer les détails d'un client spécifique a un id donné
         $query = "SELECT * FROM client WHERE id_client = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $idClient);
         $stmt->execute();
-
+ // Retourne les détails du client
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

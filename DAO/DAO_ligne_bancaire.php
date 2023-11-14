@@ -4,11 +4,11 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/DO/DO_ligne_compte.php
 class AccesBDDLigneCompte {
     public $conn;
 
-    public function __construct() {
+   function __construct() {
         $this->connectionBdd();
     }
 
-    private function connectionBdd() {
+   function connectionBdd() {
         $serveur = "localhost";
         $baseDeDonnees = "info_clients";
         $utilisateur = "root";
@@ -21,8 +21,8 @@ class AccesBDDLigneCompte {
             die("Erreur : " . $e->getMessage());
         }
     }
-
-    public function recupererListeLignesComptes() {
+// Fonction pour recupérer la liste des lignes comptes depuis la base de données
+   function recupererListeLignesComptes() {
         $res = $this->conn->query("SELECT id_ligne, id_compte, id_conseiller, montant, date_transaction FROM ligne_compte");
 
         $i = 0;
