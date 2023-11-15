@@ -50,7 +50,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
 
         if ($conseillerDetails) {
             // Afficher tous les détails du conseiller
-
+echo "";
             echo '<h2 class="h2-vert">Détails du Conseiller Bancaire</h2>';
             echo '<p>Nom du conseiller: ' . $conseillerDetails[0]['nom_conseiller'] . ' ' . $conseillerDetails[0]['prenom_conseiller'] . '</p>';
 
@@ -61,7 +61,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
         echo '<p>Client: <a href="?idClient=' . $row['id_client'] . '">' . $row['nom'] . ' ' . $row['prenom'] . '</a></p>';
 
         // Afficher les détails du compte associé au client
-        echo '<p>Compte: ' . $row['type_compte'] . ', Solde: ' . $row['solde'] . '</p>';
+        echo '<p>** Compte: ' . $row['type_compte'] . ', Solde: ' . $row['solde'] . '</p>';
     }
 
             // Ajouter un lien pour revenir à la liste des conseillers
