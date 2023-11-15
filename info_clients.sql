@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 10 nov. 2023 à 09:52
+-- Généré le : mer. 15 nov. 2023 à 08:50
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -39,7 +39,9 @@ CREATE TABLE `agence` (
 
 INSERT INTO `agence` (`id_agence`, `nom_agence`, `adresse_agence`) VALUES
 (1, 'Agence Paris', '123 Rue de la ville'),
-(2, 'Agence Lyon', '45 Avenue des lala');
+(2, 'Agence Lyon', '45 Avenue des lala'),
+(3, 'Agence Marseille', '789 Avenue du soleil'),
+(4, 'Agence Marseille', '789 Avenue du soleil');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,8 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`id_client`, `id_conseiller`, `nom`, `prenom`, `adresse`, `date_de_naissance`, `numéro_tel`, `Situation_familiale`, `Situation_familiale_nbr_enfants`) VALUES
 (1, 1, 'Lord', 'Marie', '78 Boulevard des lis', '1975-03-15', '0123456789', 'Marié', 3),
-(2, 2, 'Ludo', 'Lydia', '110 Avenue des love', '1995-06-25', '9876543210', 'Célibataire', 0);
+(2, 2, 'Ludo', 'Lydia', '110 Avenue des love', '1995-06-25', '9876543210', 'Célibataire', 0),
+(3, 2, 'Larala', 'Dani', '22 Rue de lou', '1998-09-20', '56722901234', 'Célibataire', 0);
 
 -- --------------------------------------------------------
 
@@ -86,7 +89,8 @@ CREATE TABLE `compte_bancaire` (
 
 INSERT INTO `compte_bancaire` (`id_compte`, `id_client`, `type_compte`, `solde`) VALUES
 (1, 1, 'Compte Courant', 5000),
-(2, 2, 'Compte Épargne', 10000);
+(2, 2, 'Compte Épargne', 10000),
+(3, 2, 'Compte Courant', 96500);
 
 -- --------------------------------------------------------
 
@@ -107,7 +111,8 @@ CREATE TABLE `conseiller_bancaire` (
 
 INSERT INTO `conseiller_bancaire` (`id_conseiller`, `id_agence`, `nom_conseiller`, `prenom_conseiller`) VALUES
 (1, 1, 'Dali', 'Lynda'),
-(2, 2, 'Rani', 'Celia');
+(2, 2, 'Rani', 'Celia'),
+(3, 3, 'Farah', 'Celia');
 
 -- --------------------------------------------------------
 

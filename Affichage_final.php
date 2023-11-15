@@ -55,7 +55,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
             echo '<p>Nom du conseiller: ' . $conseillerDetails[0]['nom_conseiller'] . ' ' . $conseillerDetails[0]['prenom_conseiller'] . '</p>';
 
             // Afficher la section des clients gérés par le conseiller avec les détails de leurs comptes
-    echo '<h3>Clients gérés:</h3>';
+    echo '<h3 class="h2-vert">Clients et Comptes gérés:</h3>';
     foreach ($conseillerDetails as $row) {
         // Afficher le lien vers le détail du client avec son ID
         echo '<p>Client: <a href="?idClient=' . $row['id_client'] . '">' . $row['nom'] . ' ' . $row['prenom'] . '</a></p>';
@@ -76,7 +76,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
   $listeConseillers = $boConseiller->recupererListeConseillers();
 
   // Afficher la liste des clients
-  
+
   echo '<h2 class="h2-vert">Liste des Clients</h2>';
   echo '<ul>';
   foreach ($listeClients as $client) {
@@ -87,7 +87,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
   echo '</ul>';
 
   // Afficher la liste des conseillers avec un lien vers leurs détails
-  echo '<h2 class="h2-vert">Liste des conseillers bancaires</h2>';
+  echo '<h2 class="h2-vert">La liste des conseillers avec un lien vers la liste des comptes clients gérés par eux</h2>';
   echo '<ul>';
   foreach ($listeConseillers as $conseiller) {
       // Afficher un lien vers les détails du conseiller avec son ID
