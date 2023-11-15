@@ -17,7 +17,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
     <?php
     // affichage_final.php
     require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_agence.php');
-
+  echo '<style>.h2-vert { color: green; }</style>';
     $bddClient = new AccesBDDClient;
     $boClient = new BusinessObjectClient($bddClient);
 
@@ -32,7 +32,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
 
         if ($clientDetails) {
             // Afficher tous les détails du client
-            echo '<h2>Détails du Client</h2>';
+            echo '<h2 class="h2-vert">Détails du Client</h2>';
             foreach ($clientDetails as $key => $value) {
                 echo '<p>' . $key . ': ' . $value . '</p>';
             }
@@ -50,7 +50,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
 
         if ($conseillerDetails) {
             // Afficher tous les détails du conseiller
-            echo '<h2>Détails du Conseiller Bancaire</h2>';
+
+            echo '<h2 class="h2-vert">Détails du Conseiller Bancaire</h2>';
             echo '<p>Nom du conseiller: ' . $conseillerDetails[0]['nom_conseiller'] . ' ' . $conseillerDetails[0]['prenom_conseiller'] . '</p>';
 
             // Afficher la section des clients gérés par le conseiller avec les détails de leurs comptes
@@ -75,7 +76,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
   $listeConseillers = $boConseiller->recupererListeConseillers();
 
   // Afficher la liste des clients
-  echo '<h2>Liste des Clients</h2>';
+  
+  echo '<h2 class="h2-vert">Liste des Clients</h2>';
   echo '<ul>';
   foreach ($listeClients as $client) {
       // Afficher un lien vers les détails du client avec son ID
@@ -85,7 +87,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/TP_noté_rendu/BO/BO_conseiller_banca
   echo '</ul>';
 
   // Afficher la liste des conseillers avec un lien vers leurs détails
-  echo '<h2>Liste des conseillers bancaires</h2>';
+  echo '<h2 class="h2-vert">Liste des conseillers bancaires</h2>';
   echo '<ul>';
   foreach ($listeConseillers as $conseiller) {
       // Afficher un lien vers les détails du conseiller avec son ID

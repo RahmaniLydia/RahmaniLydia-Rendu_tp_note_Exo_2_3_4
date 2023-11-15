@@ -1,24 +1,10 @@
-body>div {
-    border: solid;
-    display: flex;
-    flex-wrap: wrap;
-    font-weight: bold;
-}
-
-body>div>div {
-    border: solid 1px;
-    flex-grow: 1;
-    width: 33%;
-    font-weight: normal;
-}
 
 /* Style pour le h1 en bleu foncé */
-.h1 {
+h1 {
     color: darkblue;
-}
+};
 
-/* Style pour les h2 en gris */
-.h2 {
-    color: gray;
+/* Style pour les h2 en vert */
+h2-vert {
+    color: red;
 }
-cccc
